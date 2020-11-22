@@ -1,0 +1,21 @@
+.mainBox {
+    background-color: black;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+.img-responsive {
+    height: auto;
+    width: auto;
+    max-height: 40px;
+    max-width: 250px;
+}
+
+.darkMode {
+    background-color: rgb(51, 55, 59);
+    color: white;
+}
+
+nav .navbar-nav li a{
+    color: white;
+}
+

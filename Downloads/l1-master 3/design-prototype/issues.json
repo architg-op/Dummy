@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Application header and sub-header",
+    "description": "Implement header including primary meany and a search box. Also include the sub-header with the links ",
+    "attachments": [
+      "design-prototype/attachments/header-sub-header.png"
+    ]
+  },
+  {
+    "title": "TCO calculator form",
+    "description": "Implement the form as per the design. All the widgets should be choses as per designs. On submit form should get submitted to the API."
+  },
+  {
+    "title": "Form summary",
+    "description": "Values presented in the summary should be in sync with values entered in the form. User should be able use submit only if form data is valid",
+    "attachments": [
+      "design-prototype/attachments/form-summary.png"
+    ]
+  }
+]

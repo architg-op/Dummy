@@ -1,0 +1,205 @@
+<div class="tcoArea">
+    <div class="tcoHeading">
+        <h1><span style="color:cornflowerblue">TCO Comparison Calculator</span></h1>
+        <span style="color:gray">See how Total Cost of Ownership is lower with VMware server virtualization and private cloud solutions compared to Microsoft</span>
+    </div>
+    <hr class="hrMain">
+    <div class="mainForm">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <h5><span class="mainPoint">1. Are You..</span></h5>
+            <div id="container">
+                <button id="first">
+                    Creating a new infrastructure?
+                    <hr color="white">
+                    Customize your deployment
+                </button>
+                <button id="second">
+                    Upgrading to vCloud Suite?
+                    <hr color="gray">
+                    Move up to private cloud
+                </button>
+            </div>
+            <br><br><br><br><br><br><br>
+            <hr class=".hrFormPts">
+            <br>
+            <h5><span class="mainPoint">2. Currency</span></h5>  
+            <select name="currency" class="form-control" [(ngModel)]="selectedCurrency">
+                <option selected="selected">Select</option>
+                <option value="USD">USD</option>
+                <option value="CAD">CAD</option>
+                <option value="INR">INR</option>
+                <option value="MXN">MXN</option>
+            </select>
+            <!-- <p>Selected currency is {{ selectedCurrency }}</p> -->
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">3. How many virtual machines do you want to deploy?</span></h5> 
+            <div class="form-group">
+                <input type="text" class="form-control" id="usr" placeholder="Enter the number of VMs desired" [(ngModel)]="selectedVmNumber" name="numberVM">
+                <!-- <p>Selected Number of Vms {{ selectedVmNumber }}</p> -->
+            </div> 
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">4. Which VMware product edition would you like to compare with Microsoft's solution?</span></h5>
+
+            <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedSolution === check_box_type_solution.Essentials" (click)="selectCheckBoxSolution(check_box_type_solution.Essentials)" value="vSphere Essentials"> vSphere Essentials
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+            <input type="checkbox" [checked]="currentlyCheckedSolution === check_box_type_solution.Essentials_Plus" (click)="selectCheckBoxSolution(check_box_type_solution.Essentials_Plus)" value="vSphere Essentials Plus">vSphere Essentials Plus
+            <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedSolution === check_box_type_solution.Standard" (click)="selectCheckBoxSolution(check_box_type_solution.Standard)" value="vSphere Standard"> vSphere Standard
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+            <input type="checkbox" [checked]="currentlyCheckedSolution === check_box_type_solution.Enterprise_Plus" (click)="selectCheckBoxSolution(check_box_type_solution.Enterprise_Plus)" value="vSphere Enterprise Plus">vSphere Enterprise Plus
+            <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedSolution === check_box_type_solution.Suite_Standard" (click)="selectCheckBoxSolution(check_box_type_solution.Suite_Standard)" value="vCloud Suite Standard"> vCloud Suite Standard
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedSolution === check_box_type_solution.Suite_Advanced" (click)="selectCheckBoxSolution(check_box_type_solution.Suite_Advanced)"  value="vCloud Suite Advanced">vCloud Suite Advanced
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedSolution === check_box_type_solution.Enterprise" (click)="selectCheckBoxSolution(check_box_type_solution.Enterprise)" value="vCloud Suite Enterprise"> vCloud Suite Enterprise
+                <span class="checkmark"></span>
+            </label>
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">5. What virtualization host type would you like to use?</span></h5>
+            The virtualization hosts are the covers on which you will install the hypervisor and use to run your virtualized applications. The following virtualization hosts are available:
+            <div>
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedVirt === check_box_type_virt.ServerA" (click)="selectCheckBoxVirt(check_box_type_virt.ServerA)" value="Server A"> Server A
+                    <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedVirt === check_box_type_virt.ServerB" (click)="selectCheckBoxVirt(check_box_type_virt.ServerB)" value="Server B"> Server B
+                    <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedVirt === check_box_type_virt.ServerC" (click)="selectCheckBoxVirt(check_box_type_virt.ServerC)" value="Server C"> Server C
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">6. What type of storage you would like to employ?</span></h5>
+            Select the type of storage that meets your business needs. Storage options for virtual disks on your virtual machines include the following:
+            <div>
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedStorage === check_box_type_storage.NAS" (click)="selectCheckBoxStorage(check_box_type_storage.NAS)" value="NAS"> NAS
+                    <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedStorage === check_box_type_storage.iSCSI" (click)="selectCheckBoxStorage(check_box_type_storage.iSCSI)" value="iSCSI SAN"> iSCSI SAN
+                <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedStorage === check_box_type_storage.FC" (click)="selectCheckBoxStorage(check_box_type_storage.FC)" value="FC SAN"> FC SAN
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedStorage === check_box_type_storage.vSAN" (click)="selectCheckBoxStorage(check_box_type_storage.vSAN)" value="vSAN"> vSAN
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">7. Infrastructure costs - Electricity</span></h5>
+            Select the most reasonable estimate for electricity costs in the proposed data center location.
+            <div>
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedElecCost === check_box_type_eleccost.Low" (click)="selectCheckBoxElecCost(check_box_type_eleccost.Low)" value="Low"> Low
+                    <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedElecCost === check_box_type_eleccost.Medium" (click)="selectCheckBoxElecCost(check_box_type_eleccost.Medium)" value="Medium"> Medium
+                <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedElecCost === check_box_type_eleccost.High" (click)="selectCheckBoxElecCost(check_box_type_eleccost.High)" value="High"> High
+                    <span class="checkmark"></span>
+                </label>
+
+            </div>
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">8. Infrastructure costs - Data center real estate and build out</span></h5>
+            Select the most reasonable estimate for real estate costs in the proposed data center location. Fully burdened data center real estate cost includes facility capital cost for construction, power and cooling equipment, and weighted depreciation.
+            <div>
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedDcCost === check_box_type_dccost.Low" (click)="selectCheckBoxDcCost(check_box_type_dccost.Low)" value="Low"> Low
+                    <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                <input type="checkbox" [checked]="currentlyCheckedDcCost === check_box_type_dccost.Medium" (click)="selectCheckBoxDcCost(check_box_type_dccost.Medium)" value="Medium"> Medium
+                <span class="checkmark"></span>
+                </label>
+        
+                <label class="container">
+                    <input type="checkbox" [checked]="currentlyCheckedDcCost === check_box_type_dccost.High" (click)="selectCheckBoxDcCost(check_box_type_dccost.High)" value="High"> High
+                    <span class="checkmark"></span>
+                </label>
+
+            </div>
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">9. What general VM density are you envisioning for your data center</span></h5>
+            The default value for VM density is set to six VMs per processor. Depending on your hardware setup and workload size, you can adjust the number of virtual machines running on each processor.
+            <label for="baseVmRange">Baseline VMs per CPU</label>
+            <input type="range" class="custom-range" id="customRange">
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">10. Additional VMware VMs per CPU</span></h5>
+            <label for="addVmRange">Additional VMware VMs per CPU</label>
+            <input type="range" class="custom-range" id="customRange">
+
+            <hr class="hrFormPts">
+
+            <h5><span class="mainPoint">11. Time frame</span></h5>
+            <label for="timeFrame">Please select the number of years for the TCO evaluation.</label>
+            <input type="range" class="custom-range" id="customRange">
+            
+            <hr class="hrFormPts">
+
+            <div>
+                <button type="button" (click)="this.tcoForm.reset()" style="border: 2px solid gray;color:gray; height: 50px; width: 200px; border-radius: 5px; margin-left: 250px;" >Reset</button>
+                <button type="submit" style="background-color: #3895D3;color:white; height: 50px; width: 200px; border-radius: 5px; float: right; border: none;">Submit</button>
+            </div>
+
+        </form>
+    </div>
+    
+   
+
+
+</div>

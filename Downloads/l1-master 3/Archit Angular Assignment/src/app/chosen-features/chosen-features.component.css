@@ -1,0 +1,33 @@
+.containerChosen {
+    position: absolute;
+    top:330px;
+    right:180px;
+    height: auto;
+    border: 1px solid grey;
+    width: 300px;
+    color: grey;
+    background-color: whitesmoke;
+}
+
+.cfHead {
+    background-color:slategray;
+    color: white;
+    padding-left: 10px;
+}
+
+.below {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+button {
+    width: 300px;
+    height: 65px;
+    color: white;
+    background-color: #A9A9A9;
+}
+
+/* hr {
+    height: 5px;
+    background: white;
+} */
